@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Twilight / Akio | Python Programmer & Developer</title>
+  <meta name="description" content="Personal developer portfolio of Twilight / Akio - Python Programmer, Developer & Builder.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              dark: '#080a0e',
+              card: '#0f131a',
+              cardHover: '#151b24',
+              border: 'rgba(255, 255, 255, 0.08)',
+              emerald: '#10b981',
+              emeraldHover: '#059669',
+              muted: '#94a3b8'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #080a0e;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #10b981;
+    }
+
+    /* Subtle background grid */
+    .bg-grid-pattern {
+      background-size: 32px 32px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    }
+
+    /* Minimalist Card */
+    .minimal-card {
+      background: rgba(15, 19, 26, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+    .minimal-card:hover {
+      border-color: rgba(16, 185, 129, 0.35);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-brand-dark text-slate-200 font-sans antialiased selection:bg-emerald-500/20 selection:text-emerald-300 relative min-h-screen">
+
+  <div class="fixed inset-0 bg-grid-pattern pointer-events-none z-0"></div>
+
+  <!-- Sticky Minimalist Navigation -->
+  <header class="sticky top-0 z-50 w-full border-b border-white/[0.06] bg-brand-dark/90 backdrop-blur-md transition-all duration-300">
+    <div class="max-w-4xl mx-auto px-5 sm:px-6 h-16 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="#home" class="flex items-center gap-2 group">
+        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 group-hover:scale-125 transition-transform"></span>
+        <span class="font-mono text-sm font-semibold tracking-tight text-white group-hover:text-emerald-400 transition-colors">
+          akio<span class="text-emerald-400">.dev</span>
+        </span>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="hidden md:flex items-center gap-6 text-xs font-mono tracking-wide text-slate-400">
+        <a href="#about" class="hover:text-emerald-400 transition-colors">about</a>
+        <a href="#stack" class="hover:text-emerald-400 transition-colors">stack</a>
+        <a href="#journey" class="hover:text-emerald-400 transition-colors">journey</a>
+        <a href="#contact" class="hover:text-emerald-400 transition-colors">contact</a>
+      </nav>
+
+      <!-- Quick Email Action -->
+      <div class="hidden sm:flex items-center gap-3">
+        <a href="mailto:atharvmane9022@gmail.com" class="text-xs font-mono px-3.5 py-1.5 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-500/20 transition-all">
+          atharvmane9022@gmail.com
+        </a>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 focus:outline-none" aria-label="Toggle Navigation">
+        <svg id="hamburger-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+        <svg id="close-icon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+
+    </div>
+
+    <!-- Mobile Drawer Menu -->
+    <div id="mobile-menu" class="hidden md:hidden px-6 pt-2 pb-5 border-b border-white/10 bg-brand-dark/95 backdrop-blur-lg flex flex-col gap-3 text-sm font-mono text-slate-300">
+      <a href="#about" class="mobile-nav-link py-1 hover:text-emerald-400 transition-colors">about</a>
+      <a href="#stack" class="mobile-nav-link py-1 hover:text-emerald-400 transition-colors">stack</a>
+      <a href="#journey" class="mobile-nav-link py-1 hover:text-emerald-400 transition-colors">journey</a>
+      <a href="#contact" class="mobile-nav-link py-1 hover:text-emerald-400 transition-colors">contact</a>
+      <div class="pt-2 border-t border-white/10 flex items-center justify-between">
+        <a href="mailto:atharvmane9022@gmail.com" class="text-xs font-mono text-emerald-400 hover:underline">
+          atharvmane9022@gmail.com
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="relative z-10 max-w-4xl mx-auto px-5 sm:px-6 space-y-24 pt-14 pb-20">
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-6 sm:pt-12 space-y-6">
+      
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-mono text-emerald-400">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span>Open to Build & Collaborate</span>
+      </div>
+
+      <div class="space-y-3">
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white leading-tight">
+          Hey, I'm <span class="text-emerald-400">Twilight / Akio</span>
+        </h1>
+        <p class="text-base sm:text-lg font-mono text-slate-400">
+          Python Programmer • Developer • Builder
+        </p>
+      </div>
+
+      <p class="text-slate-300 text-base sm:text-lg max-w-2xl leading-relaxed">
+        I build useful things with code, explore new technologies, and turn ideas into working projects. Focused on Python, backend logic, automation utilities, and clean architecture.
+      </p>
+
+      <!-- Hero Actions with direct GitHub & Contact -->
+      <div class="flex flex-wrap items-center gap-3 pt-2">
+        <!-- Direct GitHub Profile -->
+        <a href="https://github.com/Akio09090" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-brand-dark font-medium text-xs font-mono transition-all transform hover:-translate-y-0.5 flex items-center gap-2 shadow-sm">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          <span>GitHub: @Akio09090</span>
+        </a>
+
+        <!-- Direct Email Link -->
+        <a href="mailto:atharvmane9022@gmail.com" class="px-4 py-2.5 rounded-lg minimal-card text-white hover:text-emerald-400 font-medium text-xs font-mono transition-all flex items-center gap-2">
+          <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          <span>Email Me</span>
+        </a>
+
+        <!-- Contact Section Anchor -->
+        <a href="#contact" class="px-4 py-2.5 rounded-lg text-slate-400 hover:text-white font-mono text-xs transition-colors">
+          <span>Let's Connect &rarr;</span>
+        </a>
+      </div>
+
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="space-y-8">
+      
+      <div class="flex items-center gap-3">
+        <span class="font-mono text-xs text-emerald-400">01.</span>
+        <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-white">About Me</h2>
+        <div class="h-px bg-white/10 flex-1 ml-2"></div>
+      </div>
+
+      <div class="space-y-4 text-slate-300 leading-relaxed text-sm sm:text-base">
+        <p>
+          I go by <strong class="text-white">Twilight</strong> / <strong class="text-white">Akio</strong> (also known as <span class="text-slate-400">Boss</span>). I am an enthusiastic developer centered on Python programming, automation tools, software development, cybersecurity, and emerging tech. I believe in pragmatic coding—building tools that solve problems efficiently and cleanly.
+        </p>
+        <p>
+          Beyond writing scripts and designing systems, I draw inspiration from <span class="text-white">anime storylines, competitive gaming, speculative reading, and story creation</span>. These diverse creative outlets give me an intuitive approach to architecture, UX flow, and problem-solving.
+        </p>
+      </div>
+
+      <!-- Quick Metrics Grid -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
+        <div class="minimal-card p-4 rounded-xl">
+          <div class="text-xl font-bold font-mono text-emerald-400">24+</div>
+          <div class="text-xs text-slate-400 font-mono mt-0.5">Projects</div>
+        </div>
+        <div class="minimal-card p-4 rounded-xl">
+          <div class="text-xl font-bold font-mono text-emerald-400">12+</div>
+          <div class="text-xs text-slate-400 font-mono mt-0.5">Technologies</div>
+        </div>
+        <div class="minimal-card p-4 rounded-xl">
+          <div class="text-xl font-bold font-mono text-emerald-400">40+</div>
+          <div class="text-xs text-slate-400 font-mono mt-0.5">GitHub Repos</div>
+        </div>
+        <div class="minimal-card p-4 rounded-xl">
+          <div class="text-xl font-bold font-mono text-emerald-400">3+</div>
+          <div class="text-xs text-slate-400 font-mono mt-0.5">Years Learning</div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Tech Stack Section -->
+    <section id="stack" class="space-y-8">
+      
+      <div class="flex items-center gap-3">
+        <span class="font-mono text-xs text-emerald-400">02.</span>
+        <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-white">Tech Stack</h2>
+        <div class="h-px bg-white/10 flex-1 ml-2"></div>
+      </div>
+
+      <div class="space-y-6">
+
+        <!-- Programming -->
+        <div class="space-y-2.5">
+          <div class="text-xs font-mono uppercase tracking-wider text-slate-400">Programming</div>
+          <div class="flex flex-wrap gap-2">
+            <span class="minimal-card px-3.5 py-1.5 rounded-lg text-xs font-mono text-emerald-400 border-emerald-500/30 flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Python (Core)
+            </span>
+            <span class="minimal-card px-3 py-1.5 rounded-lg text-xs font-mono text-slate-300">Java</span>
+            <span class="minimal-card px-3 py-1.5 rounded-lg text-xs font-mono text-slate-300">JavaScript</span>
+          </div>
+        </div>
+
+        <!-- Web -->
+        <div class="space-y-2.5">
+          <div class="text-xs font-mono uppercase tracking-wider text-slate-400">Web</div>
+          <div class="flex flex-wrap gap-2">
+            <span class="minimal-card px-3 py-1.5 rounded-lg text-xs font-mono text-slate-300">HTML5</span>
+            <span class="minimal-card px-3 py-1.5 rounded-lg text-xs font-mono text-slate-300">CSS3</span>
+            <span class="minimal-card px-3 py-1.5 rounded-lg text-xs font-mono text-slate-300">Tailwind CSS</span>
+          </div>
+        </div>
+
+        <!-- Database -->
+        <div class="space-y-2.5">
+          <div class="text-xs font-mono uppercase tracking-wider text-slate-400">Database</div>
+          <div class="flex flex-wrap gap-2">
+            <span class="minimal-card px-3 py-1.5 rounded-lg text-xs font-mono text-slate-300">SQLite</span>
+            <span class="minimal-card px-3 py-1.5 rounded-lg text-xs font-mono text-slate-300">MySQL</span>
+          </div>
+        </div>
+
+        <!-- Tools & Environments -->
+        <div class="space-y-2.5">
+          <div class="text-xs font-mono uppercase tracking-wider text-slate-400">Tools</div>
+          <div class="flex flex-wrap gap-2">
+            <span class="minimal-card px-3 py-1.5 rounded-lg text-xs font-mono text-slate-300">Git</span>
+            <span class="minimal-card px-3 py-1.5 rounded-lg text-xs font-mono text-slate-300">GitHub</span>
+            <span class="minimal-card px-3 py-1.5 rounded-lg text-xs font-mono text-slate-300">Linux CLI</span>
+            <span class="minimal-card px-3 py-1.5 rounded-lg text-xs font-mono text-slate-300">VS Code</span>
+          </div>
+        </div>
+
+        <!-- Hardware & Electronics -->
+        <div class="space-y-2.5">
+          <div class="text-xs font-mono uppercase tracking-wider text-slate-400">Hardware</div>
+          <div class="flex flex-wrap gap-2">
+            <span class="minimal-card px-3 py-1.5 rounded-lg text-xs font-mono text-slate-300">Arduino</span>
+            <span class="minimal-card px-3 py-1.5 rounded-lg text-xs font-mono text-slate-300">Sensors & Microcontrollers</span>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- Journey Section -->
+    <section id="journey" class="space-y-8">
+      
+      <div class="flex items-center gap-3">
+        <span class="font-mono text-xs text-emerald-400">03.</span>
+        <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-white">Journey</h2>
+        <div class="h-px bg-white/10 flex-1 ml-2"></div>
+      </div>
+
+      <div class="relative border-l border-white/10 ml-2 space-y-7 text-sm">
+        
+        <div class="relative pl-6">
+          <div class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-slate-600 border border-brand-dark"></div>
+          <div class="font-mono text-xs text-slate-400">Phase 01</div>
+          <h3 class="font-semibold text-white">Started Programming</h3>
+          <p class="text-xs text-slate-400 mt-1">Learned programmatic logic, computer foundations, and algorithm design.</p>
+        </div>
+
+        <div class="relative pl-6">
+          <div class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-slate-600 border border-brand-dark"></div>
+          <div class="font-mono text-xs text-slate-400">Phase 02</div>
+          <h3 class="font-semibold text-white">Mastered Python</h3>
+          <p class="text-xs text-slate-400 mt-1">Dived into Python syntax, data structures, scripting, and automation workflows.</p>
+        </div>
+
+        <div class="relative pl-6">
+          <div class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-slate-600 border border-brand-dark"></div>
+          <div class="font-mono text-xs text-slate-400">Phase 03</div>
+          <h3 class="font-semibold text-white">Building Real Utilities</h3>
+          <p class="text-xs text-slate-400 mt-1">Constructed practical tools, CLI automation utilities, and workflow optimizers.</p>
+        </div>
+
+        <div class="relative pl-6">
+          <div class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-slate-600 border border-brand-dark"></div>
+          <div class="font-mono text-xs text-slate-400">Phase 04</div>
+          <h3 class="font-semibold text-white">Web & Database Explorations</h3>
+          <p class="text-xs text-slate-400 mt-1">Explored HTML, CSS, JavaScript, and database integration with SQLite & MySQL.</p>
+        </div>
+
+        <div class="relative pl-6">
+          <div class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-slate-600 border border-brand-dark"></div>
+          <div class="font-mono text-xs text-slate-400">Phase 05</div>
+          <h3 class="font-semibold text-white">Hardware & Cybersecurity</h3>
+          <p class="text-xs text-slate-400 mt-1">Connected software to physical systems with Arduino microcontrollers and researched network security basics.</p>
+        </div>
+
+        <div class="relative pl-6">
+          <div class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-emerald-400"></div>
+          <div class="font-mono text-xs text-emerald-400">Current Phase</div>
+          <h3 class="font-semibold text-white">Continuous Development & System Refinement</h3>
+          <p class="text-xs text-slate-300 mt-1">Designing efficient tools, refining code modularity, and expanding technical horizons.</p>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="space-y-8">
+      
+      <div class="flex items-center gap-3">
+        <span class="font-mono text-xs text-emerald-400">04.</span>
+        <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-white">Let's Connect</h2>
+        <div class="h-px bg-white/10 flex-1 ml-2"></div>
+      </div>
+
+      <p class="text-slate-300 text-sm leading-relaxed max-w-xl">
+        Feel free to reach out directly via email or check out my repositories on GitHub. I'm always open to discussing new software ideas, Python automation tasks, or collaborations.
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        
+        <!-- Direct Email Card with 1-Click Copy and Direct Mailto -->
+        <div class="minimal-card p-5 rounded-xl space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-mono text-slate-400 uppercase tracking-wider">Direct Email</span>
+            <button id="copy-email-btn" class="text-xs font-mono px-2 py-0.5 rounded bg-white/5 hover:bg-emerald-500/20 text-emerald-400 border border-white/10 transition-colors" title="Copy email address">
+              Copy
+            </button>
+          </div>
+          <a href="mailto:atharvmane9022@gmail.com" class="block font-mono text-sm sm:text-base font-medium text-white hover:text-emerald-400 transition-colors break-all" id="developer-email">
+            atharvmane9022@gmail.com
+          </a>
+          <p class="text-xs text-slate-500 font-mono">Click to open default mail client</p>
+        </div>
+
+        <!-- GitHub Profile Card -->
+        <a href="https://github.com/Akio09090" target="_blank" rel="noopener noreferrer" class="minimal-card p-5 rounded-xl space-y-3 group block">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-mono text-slate-400 uppercase tracking-wider">GitHub Profile</span>
+            <svg class="w-4 h-4 text-slate-400 group-hover:text-emerald-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+          </div>
+          <div class="font-mono text-sm sm:text-base font-medium text-white group-hover:text-emerald-400 transition-colors">
+            github.com/Akio09090
+          </div>
+          <p class="text-xs text-slate-500 font-mono">@Akio09090 • Repositories & Code</p>
+        </a>
+
+        <!-- LinkedIn (Placeholder) -->
+        <a href="YOUR_LINKEDIN_URL" target="_blank" rel="noopener noreferrer" class="minimal-card p-4 rounded-xl flex items-center justify-between group">
+          <div class="flex items-center gap-3">
+            <div class="w-7 h-7 rounded bg-white/5 flex items-center justify-center font-mono text-xs text-slate-300">in</div>
+            <div>
+              <div class="font-mono text-xs font-medium text-white group-hover:text-emerald-400 transition-colors">LinkedIn</div>
+              <div class="text-[11px] font-mono text-slate-500">Connect professionally</div>
+            </div>
+          </div>
+          <span class="text-xs font-mono text-slate-500 group-hover:text-emerald-400">&rarr;</span>
+        </a>
+
+        <!-- Availability Status -->
+        <div class="minimal-card p-4 rounded-xl flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse ml-2"></div>
+            <div>
+              <div class="font-mono text-xs font-medium text-white">Status: Available</div>
+              <div class="text-[11px] font-mono text-slate-500">Open to Python & Software collaborations</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-white/[0.06] bg-black/40 py-8">
+    <div class="max-w-4xl mx-auto px-5 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-mono text-slate-500">
+      <div>
+        Built with curiosity and code.
+      </div>
+      <div class="flex items-center gap-4">
+        <span>&copy; <span id="current-year">2026</span> Twilight / Akio</span>
+        <a href="#home" class="hover:text-emerald-400 transition-colors">&uarr; top</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Dynamic Footer Year
+      const yearSpan = document.getElementById('current-year');
+      if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
+      }
+
+      // 2. Mobile Menu Toggle
+      const mobileBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const hamburgerIcon = document.getElementById('hamburger-icon');
+      const closeIcon = document.getElementById('close-icon');
+      const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+
+      if (mobileBtn && mobileMenu) {
+        mobileBtn.addEventListener('click', () => {
+          const isHidden = mobileMenu.classList.contains('hidden');
+          if (isHidden) {
+            mobileMenu.classList.remove('hidden');
+            hamburgerIcon.classList.add('hidden');
+            closeIcon.classList.remove('hidden');
+          } else {
+            mobileMenu.classList.add('hidden');
+            hamburgerIcon.classList.remove('hidden');
+            closeIcon.classList.add('hidden');
+          }
+        });
+
+        mobileLinks.forEach(link => {
+          link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            hamburgerIcon.classList.remove('hidden');
+            closeIcon.classList.add('hidden');
+          });
+        });
+      }
+
+      // 3. One-Click Copy for Email
+      const copyBtn = document.getElementById('copy-email-btn');
+      const emailElement = document.getElementById('developer-email');
+
+      if (copyBtn && emailElement) {
+        copyBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const emailText = emailElement.textContent.trim();
+
+          try {
+            const textarea = document.createElement('textarea');
+            textarea.value = emailText;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+
+            copyBtn.textContent = 'Copied!';
+            copyBtn.classList.add('bg-emerald-500/20', 'text-emerald-300');
+
+            setTimeout(() => {
+              copyBtn.textContent = 'Copy';
+              copyBtn.classList.remove('bg-emerald-500/20', 'text-emerald-300');
+            }, 2000);
+          } catch (err) {
+            console.warn('Unable to copy text: ', err);
+          }
+        });
+      }
+    });
+  </script>
+
+</body>
+</html>
